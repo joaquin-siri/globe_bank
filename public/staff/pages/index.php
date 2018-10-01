@@ -13,9 +13,13 @@ $pages = [
 
 <?php include(SHARED_PATH. '/staff_header.php') ?>
 
-  <div class="content">
+  <div id="content">
       <div class="pages listing">
         <h1>Pages</h1>
+
+        <div class="actions">
+          <a class="action" href="<?= url_for('/staff/pages/new.php'); ?>">Create New Page</a>
+        </div>
 
           <table class="list">
             <tr>
@@ -31,11 +35,12 @@ $pages = [
                 <td><?= h($page['id']);?></td>
                 <td><?= h($page['name']);?></td>
                 <td><?= h($page['url']);?></td>
-                <td><a href="<?= url_for('/staff/pages/show.php?id='.$page['id'])?>">Show</a>
+                <td><a class="action" href="<?= url_for('/staff/pages/show.php?id='.$page['id'])?>">View</a>
+                <td><a class="action" href="<?= url_for('/staff/pages/edit.php?id='.$page['id'])?>">Edit</a>
                 </td>
 
               </tr>
-            <?php } ?>}
+            <?php } ?>
           </table>
 
       </div>
