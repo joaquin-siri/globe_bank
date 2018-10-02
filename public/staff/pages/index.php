@@ -2,11 +2,8 @@
 
 <?php
 
-$pages = [
-['id'=>'1', 'name'=>'Twitter', 'url'=>'twitter.com'],
-['id'=>'2', 'name'=>'Facebook', 'url'=>'facebook.com'],
-['id'=>'3', 'name'=>'Instagram', 'url'=>'instrgram.com'],
-];
+$pages_set = find_all_pages();
+
  ?>
 
 <?php $page_title='Pages';?>
@@ -24,17 +21,24 @@ $pages = [
           <table class="list">
             <tr>
               <th>ID</th>
+              <th>Subject ID</th>
               <th>Name</th>
-              <th>URL</th>
+              <th>Position</th>
+              <th>Visible</th>
+              <th>Content</th>
+              <th>&nbsp;</th>
               <th>&nbsp;</th>
             </tr>
 
             <?php
-            foreach($pages as $page) { ?>
+            while($page = mysqli_fetch_assoc($pages_set)) { ?>
               <tr>
                 <td><?= h($page['id']);?></td>
-                <td><?= h($page['name']);?></td>
-                <td><?= h($page['url']);?></td>
+                <td><?= h($page['subject_id']);?></td>
+                <td><?= h($page['menu_name']);?></td>
+                <td><?= h($page['position']);?></td>
+                <td><?= h($page['visible']);?></td>
+                <td><?= h($page['content']);?></td>
                 <td><a class="action" href="<?= url_for('/staff/pages/show.php?id='.$page['id'])?>">View</a>
                 <td><a class="action" href="<?= url_for('/staff/pages/edit.php?id='.$page['id'])?>">Edit</a>
                 </td>
@@ -43,6 +47,7 @@ $pages = [
             <?php } ?>
           </table>
 
+          <?php mysqli_free_result($pages_set); ?>
       </div>
 
   </div>
