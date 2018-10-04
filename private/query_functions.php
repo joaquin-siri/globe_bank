@@ -80,5 +80,25 @@ function insert_subject($subject){
   }
 }
 
+function delete_subject($id){
+  global $db;
+
+  $sql = "DELETE FROM subjects ";
+  $sql .= "WHERE id='" . $id . "' ";
+  $sql .= "LIMIT 1;";
+
+  $result = mysqli_query($db, $sql);
+
+  if ($result) {
+    return true;
+  } else {
+    echo mysqli_error($db);
+    db_disconnect($db);
+    exit;
+    //DELETE failed
+  }
+
+}
+
 
  ?>
