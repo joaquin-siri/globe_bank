@@ -8,8 +8,8 @@ $subject = find_subject_by_id($id);
 
 ?>
 
-<?php $page_title = 'Show Subject'; ?>
-<?php include(SHARED_PATH . '/staff_header.php'); ?>
+  <?php $page_title = 'Show Subject'; ?>
+  <?php include(SHARED_PATH . '/staff_header.php'); ?>
 
 <h1>Subject: <?php echo h($subject['menu_name']); ?></h1>
 
@@ -27,6 +27,6 @@ $subject = find_subject_by_id($id);
     <dd><?php echo $subject['visible'] == '1' ? 'true' : 'false'; ?></dd>
   </dl>
 </div>
-
-
 </div>
+<br><br>
+<?php include(SHARED_PATH . '/staff_footer.php'); ?>

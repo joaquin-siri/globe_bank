@@ -3,21 +3,35 @@
 <?php
 // $id = isset($_GET['id']) ? $_GET['id'] : '1';
 $id = $_GET['id'] ?? '1'; // PHP > 7.0
+
+$pages = find_pages_by_id($id);
+
 ?>
 
 <?php $page_title = 'Show Page'; ?>
 <?php include(SHARED_PATH . '/staff_header.php'); ?>
 
-<div id="content">
+<h1>Subject: <?php echo h($pages['menu_name']); ?></h1>
 
-  <a class="back-link" href="<?php echo url_for('/staff/pages/index.php'); ?>">&laquo; Back to List</a>
-
-  <div class="page show">
-
-    Page ID: <?php echo h($id); ?>
-
-  </div>
-
+<div class="attributes">
+  <dl>
+    <dt>Menu Name</dt>
+    <dd><?php echo h($pages['menu_name']); ?></dd>
+  </dl>
+  <dl>
+    <dt>Position</dt>
+    <dd><?php echo h($pages['position']); ?></dd>
+  </dl>
+  <dl>
+    <dt>Visible</dt>
+    <dd><?php echo $pages['visible'] == '1' ? 'true' : 'false'; ?></dd>
+  </dl>
+  <dl>
+    <dt>Content</dt>
+    <dd><?php if ($pages['content'] == null ) {
+      // code...
+    }; ?></dd>
+  </dl>
 </div>
-
+<br><br>
 <?php include(SHARED_PATH . '/staff_footer.php'); ?>
