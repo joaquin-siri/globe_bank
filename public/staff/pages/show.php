@@ -29,7 +29,9 @@ $pages = find_pages_by_id($id);
   <dl>
     <dt>Content</dt>
     <dd><?php if ($pages['content'] == null ) {
-      // code...
+      echo 'Default content';
+    } else {
+      echo $pages['content'];
     }; ?></dd>
   </dl>
 </div>
