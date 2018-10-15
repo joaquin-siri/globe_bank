@@ -28,20 +28,23 @@ $pages_set = find_all_pages();
               <th>Content</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
+              <th>&nbsp;</th>
             </tr>
 
             <?php
             while($page = mysqli_fetch_assoc($pages_set)) { ?>
+              <?php $subject = find_subject_by_id($page['subject_id']) ?>
               <tr>
                 <td><?= h($page['id']);?></td>
-                <td><?= h($page['subject_id']);?></td>
+                <td><?= h($subject['menu_name']);?></td>
                 <td><?= h($page['menu_name']);?></td>
                 <td><?= h($page['position']);?></td>
                 <td><?= h($page['visible']);?></td>
                 <td><?= h($page['content']);?></td>
-                <td><a class="action" href="<?= url_for('/staff/pages/show.php?id='.$page['id'])?>">View</a>
-                <td><a class="action" href="<?= url_for('/staff/pages/edit.php?id='.$page['id'])?>">Edit</a>
-                </td>
+                <td><a class="action" href="<?= url_for('/staff/pages/show.php?id='.$page['id'])?>">View</a></td>
+                <td><a class="action" href="<?= url_for('/staff/pages/edit.php?id='.$page['id'])?>">Edit</a></td>
+                <td><a class="action" href="<?= url_for('/staff/pages/delete.php?id=' . h(u($page['id']))); ?>">Delete</a></td>
+
 
               </tr>
             <?php } ?>
