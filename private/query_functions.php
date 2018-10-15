@@ -91,6 +91,30 @@ function insert_subject($subject){
   }
 }
 
+function insert_page($page){
+  global $db;
+
+  $sql = "INSERT INTO pages ";
+  $sql .= "(menu_name, position, visible) ";
+  $sql .= "VALUES (";
+  $sql .= "'" . $page['menu_name'] . "',";
+  $sql .= "'" . $page['position'] . "',";
+  $sql .= "'" . $page['visible'] . "')";
+  $result = mysqli_query($db, $sql);
+
+  //For INSERT statements, results are true/false
+  if($result){
+    return true;
+
+  } else {
+    //INSERT failed
+     echo mysqli_error($db);
+     db_disconnect($db);
+     exit;
+  }
+
+}
+
 function delete_subject($id){
   global $db;
 
