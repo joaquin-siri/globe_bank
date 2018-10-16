@@ -15,16 +15,24 @@ if (is_post_request()){
   $subject ['position'] = $_POST['position'] ?? '';
   $subject ['visible'] = $_POST['visible'] ?? '';
 
-$result = update_subject($subject);
-redirect_to(url_for('/staff/subjects/show.php?id=' . $id));
+  $result = update_subject($subject);
+  if ($result === true) {
+    redirect_to(url_for('/staff/subjects/show.php?id=' . $id));
+  } else {
+    $errors = $result;
+    // var_dump($errors);
+  }
+
 
 } else {
 
-    $subject = find_subject_by_id($id);
-    $subject_set = find_all_subjects();
-    $subject_count = mysqli_num_rows($subject_set);
-    mysqli_free_result($subject_set);
+  $subject = find_subject_by_id($id);
+
 }
+
+$subject_set = find_all_subjects();
+$subject_count = mysqli_num_rows($subject_set);
+mysqli_free_result($subject_set);
 
 ?>
 
@@ -38,6 +46,8 @@ redirect_to(url_for('/staff/subjects/show.php?id=' . $id));
    <div class="subject edit">
      <h1>Edit Subject</h1>
 
+
+     <?= display_errors($errors)?>
      <form action="<?php echo url_for('/staff/subjects/edit.php?id=' . h(u($id))); ?>" method="post">
        <dl>
          <dt>Menu Name</dt>
