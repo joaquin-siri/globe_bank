@@ -9,8 +9,9 @@ $id = $_GET['id'];
 
 if(is_post_request()) {
 
-    $result = delete_subject($id);
-    redirect_to(url_for('/staff/subjects/index.php'));
+  $result = delete_subject($id);
+  redirect_to(url_for('/staff/subjects/index.php'));
+
 } else {
   $subject = find_subject_by_id($id);
 }

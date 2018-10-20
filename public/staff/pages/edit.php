@@ -20,7 +20,7 @@ if(is_post_request()) {
   $page['content'] = $_POST['content'] ?? '';
 
   $result = update_page($page);
-  if ($result === true) {
+  if($result === true) {
     redirect_to(url_for('/staff/pages/show.php?id=' . $id));
   } else {
     $errors = $result;
@@ -28,8 +28,7 @@ if(is_post_request()) {
 
 } else {
 
-  $page = find_pages_by_id($id);
-
+  $page = find_page_by_id($id);
 
 }
 
@@ -49,7 +48,8 @@ mysqli_free_result($page_set);
   <div class="page edit">
     <h1>Edit Page</h1>
 
-    <?= display_errors($errors); ?>
+    <?php echo display_errors($errors); ?>
+
     <form action="<?php echo url_for('/staff/pages/edit.php?id=' . h(u($id))); ?>" method="post">
       <dl>
         <dt>Subject</dt>
@@ -93,7 +93,7 @@ mysqli_free_result($page_set);
         <dt>Visible</dt>
         <dd>
           <input type="hidden" name="visible" value="0" />
-          <input type="checkbox" name="visible" value="1"<?php if($page['subject_id'] == "1") { echo " checked"; } ?> />
+          <input type="checkbox" name="visible" value="1"<?php if($page['visible'] == "1") { echo " checked"; } ?> />
         </dd>
       </dl>
       <dl>

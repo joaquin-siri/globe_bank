@@ -4,7 +4,7 @@
 
   function db_connect() {
     $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-    confirm_db_connection();
+    confirm_db_connect();
     return $connection;
   }
 
@@ -14,7 +14,11 @@
     }
   }
 
-  function confirm_db_connection(){
+  function db_escape($connection, $string) {
+    return mysqli_real_escape_string($connection, $string);
+  }
+
+  function confirm_db_connect() {
     if(mysqli_connect_errno()) {
       $msg = "Database connection failed: ";
       $msg .= mysqli_connect_error();
@@ -23,7 +27,7 @@
     }
   }
 
-  function confirm_result_set($result_set){
+  function confirm_result_set($result_set) {
     if (!$result_set) {
     	exit("Database query failed.");
     }

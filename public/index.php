@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Globe Bank</title>
-  </head>
-  <body>
-    <h1>Globe bank coming soon</h1>
-  </body>
-</html>
+<?php require_once('../private/initialize.php'); ?>
+
+<?php include(SHARED_PATH . '/public_header.php'); ?>
+
+<div id="main">
+
+  <?php include(SHARED_PATH . '/public_navigation.php'); ?>
+
+  <div id="page">
+
+  </div>
+
+</div>
+
+<?php include(SHARED_PATH . '/public_footer.php'); ?>
